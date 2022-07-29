@@ -10,7 +10,6 @@
 	<parent>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-parent</artifactId>
-		<relativePath>../org.springframework.spring-parent</relativePath>
 		<version>3.0.8.BUILD-SNAPSHOT</version>
 	</parent>
 
@@ -176,6 +175,12 @@
 			<version>1.2</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>rome</groupId>
+            <artifactId>rome</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>

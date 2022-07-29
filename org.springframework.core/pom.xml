@@ -10,7 +10,6 @@
 	<parent>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-parent</artifactId>
-		<relativePath>../org.springframework.spring-parent</relativePath>
 		<version>3.0.8.BUILD-SNAPSHOT</version>
 	</parent>
 
@@ -21,12 +20,20 @@
 			<version>3.2</version>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-asm</artifactId>
-			<version>${project.version}</version>
+			<artifactId>org.springframework.asm</artifactId>
+			<version>3.0.7.RELEASE</version>
 			<scope>compile</scope>
 		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>org.springframework</groupId>-->
+<!--			<artifactId>spring-asm</artifactId>-->
+<!--			<version>${project.version}</version>-->
+<!--			<scope>compile</scope>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>

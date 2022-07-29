@@ -19,7 +19,9 @@ package org.springframework.jdbc.datasource;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.Assert;
@@ -140,4 +142,8 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 		return driver.connect(url, props);
 	}
 
+	@Override
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		return null;
+	}
 }

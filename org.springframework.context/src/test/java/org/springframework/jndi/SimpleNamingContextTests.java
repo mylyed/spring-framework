@@ -21,9 +21,11 @@ import static org.junit.Assert.*;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.naming.Binding;
 import javax.naming.Context;
@@ -232,6 +234,10 @@ class StubDataSource implements DataSource {
 
 	public int getLoginTimeout() throws SQLException {
 		return 0;
+	}
+
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		return null;
 	}
 
 	public void setLogWriter(PrintWriter arg0) throws SQLException {

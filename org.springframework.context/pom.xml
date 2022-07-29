@@ -10,7 +10,6 @@
 	<parent>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-parent</artifactId>
-		<relativePath>../org.springframework.spring-parent</relativePath>
 		<version>3.0.8.BUILD-SNAPSHOT</version>
 	</parent>
 
@@ -39,12 +38,12 @@
 			<version>1</version>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>org.atinject</groupId>
-			<artifactId>inject-tck</artifactId>
-			<version>1.0.0-PFD-3-jboss-1</version>
-			<scope>test</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.atinject</groupId>-->
+<!--			<artifactId>inject-tck</artifactId>-->
+<!--			<version>1.0.0-PFD-3-jboss-1</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-jms_1.1_spec</artifactId>
@@ -228,6 +227,16 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>6</source>
+					<target>6</target>
+				</configuration>
+			</plugin>
+		</plugins>
 		<testResources>
 			<testResource>
 				<directory>${project.basedir}/src/test/java

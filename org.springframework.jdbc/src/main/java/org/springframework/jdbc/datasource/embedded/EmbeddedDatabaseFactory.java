@@ -19,6 +19,8 @@ package org.springframework.jdbc.datasource.embedded;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
@@ -211,6 +213,11 @@ public class EmbeddedDatabaseFactory {
 
 		public int getLoginTimeout() throws SQLException {
 			return this.dataSource.getLoginTimeout();
+		}
+
+		@Override
+		public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+			return null;
 		}
 
 		public void setLoginTimeout(int seconds) throws SQLException {

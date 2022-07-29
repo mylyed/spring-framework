@@ -19,6 +19,8 @@ package org.springframework.jdbc.datasource;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.InitializingBean;
@@ -33,88 +35,95 @@ import org.springframework.util.Assert;
  * delegate to the target DataSource.
  *
  * @author Juergen Hoeller
- * @since 1.1
  * @see #getConnection
+ * @since 1.1
  */
 public class DelegatingDataSource implements DataSource, InitializingBean {
 
-	private DataSource targetDataSource;
+    private DataSource targetDataSource;
 
 
-	/**
-	 * Create a new DelegatingDataSource.
-	 * @see #setTargetDataSource
-	 */
-	public DelegatingDataSource() {
-	}
+    /**
+     * Create a new DelegatingDataSource.
+     *
+     * @see #setTargetDataSource
+     */
+    public DelegatingDataSource() {
+    }
 
-	/**
-	 * Create a new DelegatingDataSource.
-	 * @param targetDataSource the target DataSource
-	 */
-	public DelegatingDataSource(DataSource targetDataSource) {
-		setTargetDataSource(targetDataSource);
-	}
-
-
-	/**
-	 * Set the target DataSource that this DataSource should delegate to.
-	 */
-	public void setTargetDataSource(DataSource targetDataSource) {
-		Assert.notNull(targetDataSource, "'targetDataSource' must not be null");
-		this.targetDataSource = targetDataSource;
-	}
-
-	/**
-	 * Return the target DataSource that this DataSource should delegate to.
-	 */
-	public DataSource getTargetDataSource() {
-		return this.targetDataSource;
-	}
-
-	public void afterPropertiesSet() {
-		if (getTargetDataSource() == null) {
-			throw new IllegalArgumentException("Property 'targetDataSource' is required");
-		}
-	}
+    /**
+     * Create a new DelegatingDataSource.
+     *
+     * @param targetDataSource the target DataSource
+     */
+    public DelegatingDataSource(DataSource targetDataSource) {
+        setTargetDataSource(targetDataSource);
+    }
 
 
-	public Connection getConnection() throws SQLException {
-		return getTargetDataSource().getConnection();
-	}
+    /**
+     * Set the target DataSource that this DataSource should delegate to.
+     */
+    public void setTargetDataSource(DataSource targetDataSource) {
+        Assert.notNull(targetDataSource, "'targetDataSource' must not be null");
+        this.targetDataSource = targetDataSource;
+    }
 
-	public Connection getConnection(String username, String password) throws SQLException {
-		return getTargetDataSource().getConnection(username, password);
-	}
+    /**
+     * Return the target DataSource that this DataSource should delegate to.
+     */
+    public DataSource getTargetDataSource() {
+        return this.targetDataSource;
+    }
 
-	public PrintWriter getLogWriter() throws SQLException {
-		return getTargetDataSource().getLogWriter();
-	}
-
-	public void setLogWriter(PrintWriter out) throws SQLException {
-		getTargetDataSource().setLogWriter(out);
-	}
-
-	public int getLoginTimeout() throws SQLException {
-		return getTargetDataSource().getLoginTimeout();
-	}
-
-	public void setLoginTimeout(int seconds) throws SQLException {
-		getTargetDataSource().setLoginTimeout(seconds);
-	}
+    public void afterPropertiesSet() {
+        if (getTargetDataSource() == null) {
+            throw new IllegalArgumentException("Property 'targetDataSource' is required");
+        }
+    }
 
 
-	//---------------------------------------------------------------------
-	// Implementation of JDBC 4.0's Wrapper interface
-	//---------------------------------------------------------------------
+    public Connection getConnection() throws SQLException {
+        return getTargetDataSource().getConnection();
+    }
 
-	@SuppressWarnings("unchecked")
-	public <T> T  unwrap(Class<T> iface) throws SQLException {
-		return getTargetDataSource().unwrap(iface);
-	}
+    public Connection getConnection(String username, String password) throws SQLException {
+        return getTargetDataSource().getConnection(username, password);
+    }
 
-	public boolean isWrapperFor(Class<?> iface) throws SQLException {
-		return getTargetDataSource().isWrapperFor(iface);
-	}
+    public PrintWriter getLogWriter() throws SQLException {
+        return getTargetDataSource().getLogWriter();
+    }
+
+    public void setLogWriter(PrintWriter out) throws SQLException {
+        getTargetDataSource().setLogWriter(out);
+    }
+
+    public int getLoginTimeout() throws SQLException {
+        return getTargetDataSource().getLoginTimeout();
+    }
+
+    @Override
+    public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return getTargetDataSource().getParentLogger();
+    }
+
+    public void setLoginTimeout(int seconds) throws SQLException {
+        getTargetDataSource().setLoginTimeout(seconds);
+    }
+
+
+    //---------------------------------------------------------------------
+    // Implementation of JDBC 4.0's Wrapper interface
+    //---------------------------------------------------------------------
+
+    @SuppressWarnings("unchecked")
+    public <T> T unwrap(Class<T> iface) throws SQLException {
+        return getTargetDataSource().unwrap(iface);
+    }
+
+    public boolean isWrapperFor(Class<?> iface) throws SQLException {
+        return getTargetDataSource().isWrapperFor(iface);
+    }
 
 }

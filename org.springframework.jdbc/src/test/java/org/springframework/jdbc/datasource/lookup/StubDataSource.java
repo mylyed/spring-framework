@@ -18,6 +18,8 @@ package org.springframework.jdbc.datasource.lookup;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.logging.Logger;
 
 import org.springframework.jdbc.datasource.AbstractDataSource;
 
@@ -38,4 +40,8 @@ class StubDataSource extends AbstractDataSource {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		throw new UnsupportedOperationException();
+	}
 }

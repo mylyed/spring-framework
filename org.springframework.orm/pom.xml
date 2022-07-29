@@ -10,7 +10,6 @@
 	<parent>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-parent</artifactId>
-		<relativePath>../org.springframework.spring-parent</relativePath>
 		<version>3.0.8.BUILD-SNAPSHOT</version>
 	</parent>
 	<dependencies>
@@ -42,25 +41,25 @@
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.core</artifactId>
-			<version>1.0.1</version>
+			<version>2.4.2</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.jpa</artifactId>
-			<version>1.0.1</version>
+			<version>2.4.2</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.asm</artifactId>
-			<version>1.0.1</version>
+			<version>2.4.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>org.eclipse.persistence.antlr</artifactId>
-			<version>1.0.1</version>
+			<version>2.4.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

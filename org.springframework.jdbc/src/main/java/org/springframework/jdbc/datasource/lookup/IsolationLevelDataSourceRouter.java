@@ -21,6 +21,9 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.logging.Logger;
+
 /**
  * DataSource that routes to one of various target DataSources based on the
  * current transaction isolation level. The target DataSources need to be
@@ -123,4 +126,8 @@ public class IsolationLevelDataSourceRouter extends AbstractRoutingDataSource {
 		return TransactionSynchronizationManager.getCurrentTransactionIsolationLevel();
 	}
 
+	@Override
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		return null;
+	}
 }
